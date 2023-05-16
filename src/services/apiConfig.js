@@ -8,8 +8,8 @@ const api = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
     //Need to add deployed link here when it's done
-      ? "http://127.0.0.1:3000"
-      : "http://127.0.0.1:3000",
+      ? "http://127.0.0.1:9259"
+      : "http://127.0.0.1:9259",
 });
 api.interceptors.request.use(
   async function (config) {
