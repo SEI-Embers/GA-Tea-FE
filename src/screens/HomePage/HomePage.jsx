@@ -3,6 +3,6 @@ import './HomePage.css'
 
 export default function HomePage() {
   return (
-    <div>HomePage</div>
+    <h1>Life After GA</h1>
   )
 }
