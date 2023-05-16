@@ -1,5 +1,4 @@
 import React from 'react'
-import './MeetTheTeam.css'
 import NavBar from '../../components/NavBar/NavBar'
 
 export default function MeetTheTeam({ user }) {
