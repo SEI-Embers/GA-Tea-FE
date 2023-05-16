@@ -9,7 +9,7 @@ export default function HomePage() {
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
     }}>
-      <p className="text-white text-center text-xl font-bold text-2xl">Life After GA</p>
+      <p className="text-white text-center text-xl font-bold text-2xl">Life After   GA</p>
       <div>
       <form className="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
       <input
