@@ -28,11 +28,10 @@ function App() {
 
   return (
     <div>
-      {/* do not push these changes, just comment this out for testing the development of the profile page */}
+      
 
-      <Profile></Profile>
 
-      {/* <Routes>
+      <Routes>
         <Route path='/' element={<HomePage user={user} setUser={setUser}/>} />
         <Route path='/sign-up' element={<SignUp user={user} setUser={setUser}/>}/>
         <Route path='/sign-in' element={<SignIn user={user} setUser={setUser}/>}/>
@@ -42,7 +41,7 @@ function App() {
         <Route path='/meet-the-team' element={<MeetTheTeam user={user}/>}/>
         <Route path='/about' element={<About user={user}/>} />
       </Routes>
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }
