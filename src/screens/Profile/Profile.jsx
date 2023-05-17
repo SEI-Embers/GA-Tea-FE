@@ -4,14 +4,13 @@ import ReactModal from 'react-modal'
 import { useState, useEffect } from 'react'
 export default function Profile(props) {
   const [pop, setPop] = useState(false)
-  const [isEditable, setIsEditable] = useState(false);
   const[testProfile, setTestProfile] = useState({
     bio: '',
     skills:[''],
     goals: '',
     favorite_GA_snacks: ''
   })
-
+  const [intermediateSkills, setInterMediateSkills] = useState([]);
   const[johnProfile, setJohn] = useState({
     username:"The World's Fault",
     bio: 'eats birds',
@@ -25,15 +24,53 @@ export default function Profile(props) {
     setPop(!pop)
   }
 
+  function updateSkills(e){
+    let length = johnProfile.skills.length()
+    let newArr = []
+    for(let i = 0; i < length; i ++){
+      newArr.push(e.target.value)
+    }
+  }
+
+  function updateBio(e){
+    let intermdiateBio = e.target.value
+    setTestProfile(testProfile.bio = intermdiateBio)
+  }
+
+  function updateGoals(e){
+    let intermediateGoals = e.target.value
+    setTestProfile(testProfile.goals = intermediateGoals)
+  }
+
+  function updateSnacks(e){
+    let intermdiateSnacks = e.target.value
+    setTestProfile(testProfile.favorite_GA_snacks = intermdiateSnacks)
+  }
+
+  function saveData(){
+    if(!testProfile.bio == ''){
+      setJohn(johnProfile = testProfile.bio)
+    }
   
-
-  function saveData(object){
-
-    return
   }
 
   return (
     <div>
+      <ReactModal  isOpen={pop}> 
+        {/*set our content in here*/}
+        <form id='editBio'>
+          <h5>Bio:</h5>
+            <textarea onChange={updateBio} defaultValue={johnProfile.bio}></textarea>
+          <h5>Skills:</h5>
+            {johnProfile.skills.map((result) => (
+              <input id={johnProfile.skills.indexOf(result)} className='editableSkill' type='text' defaultValue={result}></input>
+            ))}
+          <h5>Goals:</h5>
+            <textarea defaultValue = {johnProfile.goals}></textarea>
+            <button onClick={saveData} form="editBio" type='submit' >Submit</button>
+        </form>
+        <button  onClick={popUp}>cancel</button>
+      </ReactModal>
         <NavBar />
         <div className='left'>
           <div id='profileImg'></div>
@@ -43,7 +80,7 @@ export default function Profile(props) {
         <div className='right'>
           <div id='info' style={{ borderColor:'solid black'}}>
 
-            <svg xmlns="http://www.w3.org/2000/svg"  width="30" height="10" style={{marginLeft: 'px'}} >
+            <svg xmlns="http://www.w3.org/2000/svg" onClick={popUp}  width="30" height="10" style={{marginLeft: 'px'}} >
               <ellipse cx="5" cy="5" rx="4" ry="4" fill="grey"/>
               <ellipse cx="15" cy="5" rx="4" ry="4" fill="grey"/>
               <ellipse cx="25" cy="5" rx="4" ry="4" fill="grey"/>
