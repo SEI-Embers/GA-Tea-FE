@@ -1,8 +1,8 @@
 import api from "./apiConfig.js";
 
-export const getPosts = async () => {
+export const getComments = async () => {
   try {
-    const response = await api.get("/posts/");
+    const response = await api.get("/comments/");
     return response.data;
   } catch (error) {
     console.error(`Failed to get posts - error: ${error}`);
@@ -10,30 +10,29 @@ export const getPosts = async () => {
   }
 };
 
-export const createPosts = async (data) => {
+export const createComments = async (data) => {
     try {
-      const response = await api.post('/posts/', data);
+      const response = await api.post('/comments/', data);
       return response.data;
     } catch (error) {
       throw error;
     }
   };
 
-  export const updatePosts = async (id, data) => {
+  export const updateComments = async (id, data) => {
     try {
-      const response = await api.put(`/posts/${id}/`, data);
+      const response = await api.put(`/comments/${id}`, data);
       return response.data;
     } catch (error) {
       throw error;
     }
   };
 
-  export const deletePosts = async (id) => {
+  export const deleteComments = async (id) => {
     try {
-      const response = await api.delete(`/posts/${id}/`);
+      const response = await api.delete(`/comments/${id}`);
       return response.data;
     } catch (error) {
       throw error;
     }
   };
-
