@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { getComments } from "../../services/comments.js";
+=======
+import React, { useState } from "react";
+import EditPostModal from "../EditPostModal/EditPostModal.jsx";
+import { deletePosts } from "../../services/posts";
+>>>>>>> 807a9e711cd57e7b12dc52966dc47de312d2f184
 
-export default function Post({ post }) {
+export default function Post({ post, user, setTogglePosts }) {
   const [showAllComments, setShowAllComments] = useState(false);
   const [commentInput, setCommentInput] = useState("");
+<<<<<<< HEAD
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -17,39 +24,34 @@ export default function Post({ post }) {
     };
     fetchComments();
   }, []);
-
-  const handleCommentChange = (event) => {
-    setCommentInput(event.target.value);
-  };
-
-  const handleCommentSubmit = (event) => {
-    event.preventDefault();
-    // if (commentInput.trim() !== "") {
-    //   {const newComment = {
-    //     name: "User",
-    //     image: "https://randomuser.me/api/portraits/men/99.jpg",
-    //     content: commentInput,}
-    //   };
-    //   setComments([...comments, newComment]);
-    //   setCommentInput("");
-    // }
-  };
-
-  const handleToggleComments = () => {
-    setShowAllComments(!showAllComments);
-  };
-
-  const handleDeletePost = () => {
-    // Logic to delete the post
-    console.log("Deleting post...");
-  };
-
-  const handleEditPost = () => {
-    // Logic to edit the post
-    console.log("Editing post...");
-  };
-
-  const [showOptions, setShowOptions] = useState(false);
+=======
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [comments, setComments] = useState([
+    {
+      name: "John Doe",
+      image: "https://randomuser.me/api/portraits/women/17.jpg",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra justo vel tortor malesuada commodo. Donec ac lacinia velit.",
+    },
+    {
+      name: "Bob Smith",
+      image: "https://randomuser.me/api/portraits/men/10.jpg",
+      content:
+        "Nam consequat elit vel dolor suscipit lobortis. Duis iaculis justo at elit egestas ullamcorper. Fusce malesuada sapien sit amet urna bibendum, quis interdum enim rutrum.",
+    },
+    {
+      name: "Alice Johnson",
+      image: "https://randomuser.me/api/portraits/women/42.jpg",
+      content:
+        "Aliquam tincidunt imperdiet dignissim. Fusce sed vestibulum nisl. Donec sit amet mauris congue, imperdiet ex sit amet, commodo quam.",
+    },
+    {
+      name: "Mark Lee",
+      image: "https://randomuser.me/api/portraits/men/92.jpg",
+      content:
+        "Donec ac posuere velit. Praesent eget tincidunt lectus. Morbi maximus consectetur ex, non tristique nunc volutpat sit amet.",
+    },
+  ]);
 
   const displayedComments = showAllComments ? comments : comments.slice(0, 1);
 
@@ -57,41 +59,69 @@ export default function Post({ post }) {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(date).toLocaleDateString(undefined, options);
   };
+>>>>>>> 807a9e711cd57e7b12dc52966dc47de312d2f184
+
+  const handleCommentChange = (event) => {
+    setCommentInput(event.target.value);
+  };
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    if (commentInput.trim() !== "") {
+      const newComment = {
+        name: "User",
+        image: "https://randomuser.me/api/portraits/men/99.jpg",
+        content: commentInput,
+      };
+      setComments([...comments, newComment]);
+      setCommentInput("");
+    }
+  };
+
+  const handleToggleComments = () => {
+    setShowAllComments(!showAllComments);
+  };
+  
+  const handleDelete = async () => {
+    await deletePosts(post.id);
+    setTogglePosts((prev) => !prev);
+  };
+
+  const handleEdit = () => {
+    setShowEditModal(true)
+  }
 
   return (
     <div className="flex flex-col justify-center items-center mt-8">
-      <div className="bg-white border border-blue-800 rounded-lg shadow-lg p-6 max-w-lg w-full relative">
-        {showOptions && (
-          <div className="absolute top-0 right-0 mt-2 mr-2">
-            <div className="bg-white border border-gray-300 rounded-lg shadow-lg max-w-xs">
-              <button
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                onClick={handleEditPost}
-              >
-                Edit
-              </button>
-              <button
-                className="block px-4 py-2 text-red-500 hover:bg-gray-200 w-full text-left"
-                onClick={handleDeletePost}
-              >
-                Delete
-              </button>
+      {showEditModal && <EditPostModal setShowEditModal={setShowEditModal} setTogglePosts={setTogglePosts} postId={post.id}/>}    
+      <div className="bg-white border border-gray-300 rounded-lg shadow-lg p-6 max-w-lg w-full">
+        <div className="flex justify-between items-center mb-4">
+          <input
+            type="text"
+            className="text-lg font-bold w-full rounded-lg p-2 mb-4"
+            placeholder={post.title}
+          />
+          <span className="text-sm text-gray-500 self-end">
+            {/* {post.date} */}
+          </span>
+          {user?.id === post.owner ? (
+            <div>
+              <button onClick={handleEdit}>Edit</button>
+              <button onClick={handleDelete}>Delete</button>
             </div>
-          </div>
-        )}
-
-        <div className="flex justify-between mb-4">
-          <div className="flex flex-col">
-            <h2 className="text-lg text-gray-950 font-bold">{post.owner}</h2>
-            <h3 className="text-lg text-gray-950 font-bold mb-2">
-              {post.title}
-            </h3>
-          </div>
-          <p className="text-sm text-gray-950">
-            {formatDate(post.created_at)}
-          </p>
+          ) : null}
         </div>
-        <p className="text-gray-800 mb-4">{post.body}</p>
+        <textarea
+          className="w-full rounded-lg p-2 mb-4"
+          placeholder={post.body}
+        ></textarea>
+        <img src={post.pic} alt={post.title} />
+        <input
+          type="text"
+          className="w-full rounded-lg p-2 mb-4"
+          placeholder="Hashtags"
+        />
+>>>>>>> 807a9e711cd57e7b12dc52966dc47de312d2f184
         <form onSubmit={handleCommentSubmit}>
           <input
             type="text"

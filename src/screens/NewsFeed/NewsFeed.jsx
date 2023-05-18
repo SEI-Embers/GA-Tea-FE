@@ -4,8 +4,9 @@ import SideBar from "../../components/SideBar/SideBar";
 import Post from "../../components/Post/Post";
 import Footer from "../../components/Footer/Footer";
 
-export default function NewsFeed() {
+export default function NewsFeed({user}) {
   const [posts, setPosts] = useState([]);
+  const [togglePosts, setTogglePosts] = useState(false)
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -17,21 +18,19 @@ export default function NewsFeed() {
       }
     };
     fetchPosts();
-    // console.log(post);
-  }, []);
+  }, [togglePosts]);
 
-  // map through in return
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-700 to-blue-950">
       <div className="flex-1 flex">
-        <SideBar />
+        <SideBar user={user} setTogglePosts={setTogglePosts}/>
         <div
           className="flex-1 overflow-y-auto"
           style={{ maxHeight: "calc(100vh - 5rem)" }}
         >
           <div>
           {posts.map((post) => (
-             <Post post={post}/>
+             <Post key={post.id} post={post} user={user} setTogglePosts={setTogglePosts}/>
           ))}
             </div>
         </div>
