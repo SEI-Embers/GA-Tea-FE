@@ -2,6 +2,8 @@ import React from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import ReactModal from 'react-modal'
 import { useState, useEffect } from 'react'
+
+
 export default function Profile(props) {
   const [pop, setPop] = useState(false)
   const [isEditable, setIsEditable] = useState(false);
