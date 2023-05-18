@@ -13,6 +13,7 @@ import Footer from './components/Footer/Footer.jsx'
 function App() {
   const [user, setUser] = useState(null);
 
+
   // const fetchUser = async () => {
   //   const user = await verifyUser();
   //   user ? setUser(user) : setUser(null);

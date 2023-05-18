@@ -7,9 +7,8 @@ const getToken = () => {
 const api = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
-    //Need to add deployed link here when it's done
-      ? "ga-tea-be-production.up.railway.app"
-      : "http://127.0.0.1:9259",
+      ? "https://ga-tea-be-production.up.railway.app/"
+      : "https://ga-tea-be-production.up.railway.app/",
 });
 api.interceptors.request.use(
   async function (config) {

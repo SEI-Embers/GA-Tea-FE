@@ -2,7 +2,7 @@ import api from "./apiConfig.js";
 
 export const getPosts = async () => {
   try {
-    const response = await api.get("/posts");
+    const response = await api.get("/api/posts");
     return response.data;
   } catch (error) {
     console.error(`Failed to get posts - error: ${error}`);
@@ -12,7 +12,7 @@ export const getPosts = async () => {
 
 export const createPosts = async (data) => {
     try {
-      const response = await api.post('/posts/', data);
+      const response = await axios.post('ga-tea-be-production.up.railway.app/posts/', data);
       return response.data;
     } catch (error) {
       throw error;
@@ -21,7 +21,7 @@ export const createPosts = async (data) => {
 
   export const updatePosts = async (id, data) => {
     try {
-      const response = await api.put(`/posts/${id}`, data);
+      const response = await axios.put(`ga-tea-be-production.up.railway.app/posts/${id}/`, data);
       return response.data;
     } catch (error) {
       throw error;
@@ -30,7 +30,7 @@ export const createPosts = async (data) => {
 
   export const deletePosts = async (id) => {
     try {
-      const response = await api.delete(`/posts/${id}`);
+      const response = await axios.delete(`ga-tea-be-production.up.railway.app/posts/${id}/`);
       return response.data;
     } catch (error) {
       throw error;
