@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
-import { verifyUser } from './services/users';
 import HomePage from './screens/HomePage/HomePage.jsx'
 import SignOut from './screens/SignOut/SignOut.jsx'
 import NewsFeed from './screens/NewsFeed/NewsFeed.jsx'
@@ -13,15 +12,6 @@ import Footer from './components/Footer/Footer.jsx'
 function App() {
   const [user, setUser] = useState(null);
 
-  const fetchUser = async () => {
-    const user = await verifyUser();
-    user ? setUser(user) : setUser(null);
-  };
-
-  //sign-in & sign-out
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
 
   return (
