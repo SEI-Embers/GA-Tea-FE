@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from '../../components/NavBar/NavBar'
+// import NavBar from '../../components/NavBar/NavBar'
 import { useState } from 'react';
 
 
@@ -9,12 +9,12 @@ const MeetTheTeam = () => {
   const [members, setMembers] = useState([
     { name: 'Agustines Sudibya', image: 'https://ca.slack-edge.com/T0351JZQ0-U04P461QR9R-cf7bc80e3d8c-512', bio: '' },
     { name: 'Chelsey Alphonso', image: 'https://ca.slack-edge.com/T0351JZQ0-U04PGU3AQE5-022247ee6693-512', bio: '' },
-    { name: 'Justin Sotolongo', image: 'https://ca.slack-edge.com/T0351JZQ0-U04QZEC44N7-2f189048fd07-512', bio: '' },
-    { name: 'Michael Christenson', image: 'https://ca.slack-edge.com/T0351JZQ0-U04PF4FBZ8A-b6dfda53e589-512', bio: 'Originally built as a minor VS Code extension designed to remind fledgling programmers to drink water and ingest granola, Michael currently demonstrates a growth in artificial intelligence extolled by the likes of cybernetic overlord Christopher Duggan as "geometric" and "Turing Test-ready.' },
+    { name: 'Justin Sotolongo', image: 'https://ca.slack-edge.com/T0351JZQ0-U04QZEC44N7-2f189048fd07-512', bio: 'Trying my best to be something in this world.Idk where im going, but ill definitely bring my Switch!' },
+    { name: 'Michael Christenson', image: 'https://ca.slack-edge.com/T0351JZQ0-U04PF4FBZ8A-b6dfda53e589-512', bio: 'Originally built as a minor VS Code extension designed to remind fledgling programmers to drink water and ingest granola, Michael currently demonstrates a growth in artificial intelligence extolled by the likes of cybernetic overlord Christopher Duggan as "geometric" and "Turing Test-ready."' },
     { name: 'Demetri Geras', image: 'https://ca.slack-edge.com/T0351JZQ0-U04P6C0P5NX-2297acf53371-512', bio: '' },
-    { name: 'Sydney David', image: 'https://ca.slack-edge.com/T0351JZQ0-U04PU059XQ8-c85adff3f113-512', bio: '' },
+    { name: 'Sydney David', image: 'https://ca.slack-edge.com/T0351JZQ0-U04PU059XQ8-c85adff3f113-512', bio: 'Entire personality is based off of my love for cars, pitbulls, cats and maps, now coding' },
     { name: 'Giovanny Occident', image: 'https://ca.slack-edge.com/T0351JZQ0-U04QZ3AQYGY-f63d98e0fb9d-512', bio: '' },
-    { name: 'Grant Terdoslavich', image: 'https://ca.slack-edge.com/T0351JZQ0-U04QHPUFBCG-d56d4d6091e7-512', bio: '' },
+    { name: 'Grant Terdoslavich', image: 'https://ca.slack-edge.com/T0351JZQ0-U04QHPUFBCG-d56d4d6091e7-512', bio: 'Consuming caffeine to put more code on my screen.' },
     { name: 'Omar White', image: 'https://ca.slack-edge.com/T0351JZQ0-U04BE7G6LJC-5b6a492c1665-512', bio: '' },
    
   ]);

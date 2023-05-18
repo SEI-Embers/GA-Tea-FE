@@ -39,18 +39,3 @@ export default AboutPage;
 
 
 
-
-
-
-
-// export default function About({ user }) {
-//   return (
-//     <div>
-//         {user ? (
-//             <NavBar />
-//         ) : null}
-        
-//         About
-//         </div>
-//   )
-// }
