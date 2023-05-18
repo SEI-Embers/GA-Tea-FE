@@ -4,19 +4,23 @@ import ReactModal from 'react-modal'
 import { useState, useEffect } from 'react'
 export default function Profile(props) {
   const [pop, setPop] = useState(false)
-  const[testProfile, setTestProfile] = useState({
+  const [testBio, setBio] = useState('')
+  const [testGoals, setGoals] = useState('')
+  const [testSkills, setSkills] = useState([])
+  const [testUsername, setTestUsername] = ''
+
+   const[testProfile, setTestProfile] = useState({
+    username: '',
     bio: '',
     skills:[''],
-    goals: '',
-    favorite_GA_snacks: ''
   })
-  const [intermediateSkills, setInterMediateSkills] = useState([]);
+  // const [intermediateSkills, setInterMediateSkills] = useState([]);
+  
+  //replace this code below V with the code for setting up the profile with props
   const[johnProfile, setJohn] = useState({
     username:"The World's Fault",
     bio: 'eats birds',
     skills: ['eating asphalt','making kids cry'],
-    goals: 'becoming president of the US, and waging war against Canada',
-    favorite_GA_snacks:['lysol wet wipes']
 
   })
 
@@ -34,22 +38,39 @@ export default function Profile(props) {
 
   function updateBio(e){
     let intermdiateBio = e.target.value
-    setTestProfile(testProfile.bio = intermdiateBio)
+    console.log(e.target.value)
+    setBio(intermdiateBio)
+    console.log(intermdiateBio + ' this is the intermediate vlaue for bio to be passed on or discarded')
+    // setTestProfile(testProfile.bio = intermdiateBio)
   }
 
-  function updateGoals(e){
-    let intermediateGoals = e.target.value
-    setTestProfile(testProfile.goals = intermediateGoals)
-  }
 
-  function updateSnacks(e){
-    let intermdiateSnacks = e.target.value
-    setTestProfile(testProfile.favorite_GA_snacks = intermdiateSnacks)
+
+
+  function updateObj(){
+    let myObj = {
+      username: testUsername,
+      bio: testBio,
+      skills: testSkills,
+    }
+    console.log(myObj)
+    setTestProfile(myObj)
+    console.log(testProfile.bio)
+    
   }
 
   function saveData(){
-    if(!testProfile.bio == ''){
-      setJohn(johnProfile = testProfile.bio)
+    if(testProfile.bio != ''){
+      setJohn(johnProfile.bio = testProfile.bio)
+    }
+    else if(testProfile.skills != []){
+      setJohn(johnProfile.skills = testProfile.skills)
+    }
+    else if(testProfile.goals != ''){
+      setJohn(johnProfile.goals = testProfile.goals)
+    }
+    else if(testProfile.favorite_GA_snacks != ''){
+      setJohn(johnProfile.favorite_GA_snacks = testProfile.favorite_GA_snacks)
     }
   
   }
@@ -60,14 +81,14 @@ export default function Profile(props) {
         {/*set our content in here*/}
         <form id='editBio'>
           <h5>Bio:</h5>
-            <textarea onChange={updateBio} defaultValue={johnProfile.bio}></textarea>
+            <textarea id='bioContent' onChange={updateBio} defaultValue={johnProfile.bio}></textarea>
           <h5>Skills:</h5>
             {johnProfile.skills.map((result) => (
-              <input id={johnProfile.skills.indexOf(result)} className='editableSkill' type='text' defaultValue={result}></input>
+              <input id={johnProfile.skills.indexOf(result)} onChange={updateSkills} className='editableSkill' type='text' defaultValue={result}></input>
             ))}
-          <h5>Goals:</h5>
-            <textarea defaultValue = {johnProfile.goals}></textarea>
-            <button onClick={saveData} form="editBio" type='submit' >Submit</button>
+          
+            {/* <textarea onChange={updateGoals} defaultValue = {johnProfile.goals}></textarea> */}
+            <button onClick={updateObj} form="editBio" type='submit' >Submit</button>
         </form>
         <button  onClick={popUp}>cancel</button>
       </ReactModal>
@@ -106,11 +127,15 @@ export default function Profile(props) {
                 </ul>
             </div>
            
+            {/* <div id='goalsDiv' className='infoDiv'>
+              <h3>Goals:</h3> 
+              <p id='goalText' className='content'>
+                {johnProfile.goals}
+              </p>
+            </div> */}
             
-            <h3>Goals:</h3> {/*p tag*/}
-            <h3>Favorite GA Snacks:</h3>
 
-            <button>save</button>
+            
           </div>
         </div>
     </div>
