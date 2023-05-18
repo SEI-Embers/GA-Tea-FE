@@ -1,5 +1,5 @@
 import axios from "axios";
-import axios from "./apiConfig.js";
+import api from "./apiConfig.js";
 
 export const updateProfile = async (id, data) => {
     try {

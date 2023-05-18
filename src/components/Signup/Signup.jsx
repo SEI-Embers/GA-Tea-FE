@@ -1,11 +1,27 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { signUp } from '../../services/users.js';
 
-export default function Signup() {
+export default function Signup (props) {
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [usernameSignUp, setUsernameSignUp] = useState("");
   const [passwordSignUp, setPasswordSignUp] = useState("");
-  const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState("");
+  // const [passwordConfirmSignUp, setPasswordConfirmSignUp] = useState("");
   const [emailSignUp, setEmailSignUp] = useState("");
+
+  const navigate = useNavigate()
+
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    password: ''
+  })
+
+  const handleChange = (event) =>
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value,
+    })
 
   const handleSignUpClick = () => {
     setShowSignUpForm(true);
@@ -15,12 +31,36 @@ export default function Signup() {
     setShowSignUpForm(false);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // console.log("Username:", username);
-    // console.log("Password:", password);
-    // add your login logic here
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const user = await signUp(form)
+    navigate("/newsfeed")
   };
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault()
+  //   const data = {
+  //     username: "apple12345",
+  //     email: "applez@email.com",
+  //     password: "apple123!"
+  //   }
+  //   const user = await signUp(data)
+  // }
+
+  const renderError = () => {
+    const toggleForm = form.isError ? 'danger' : ''
+    if (form.isError) {
+      return (
+        <button type='submit' className={toggleForm}>
+          {form.errorMsg}
+        </button>
+      )
+    } else {
+      return <button type='submit'>Sign Up</button>
+    }
+  };
+
+  const { username, email, password } = form
 
   return (
     <React.Fragment>
@@ -43,31 +83,28 @@ export default function Signup() {
             <input
               type="text"
               placeholder="Username"
+              name='username'
               className="border border-black rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={usernameSignUp}
-              onChange={(event) => setUsernameSignUp(event.target.value)}
+              value={username}
+              onChange={handleChange}
             />
             <input
               type="email"
               placeholder="Email"
+              name='email'
               className="border border-black rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={emailSignUp}
-              onChange={(event) => setEmailSignUp(event.target.value)}
+              value={email}
+              onChange={handleChange}
             />
             <input
               type="password"
               placeholder="Password"
+              name='password'
               className="border border-black rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={passwordSignUp}
-              onChange={(event) => setPasswordSignUp(event.target.value)}
+              value={password}
+              onChange={handleChange}
             />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              className="border border-black rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={passwordConfirmSignUp}
-              onChange={(event) => setPasswordConfirmSignUp(event.target.value)}
-            />
+            {renderError()}
             <button
               type="submit"
               className="bg-black hover:bg-red-500 transition duration-500 ease-in-out text-white font-bold text-md py-2 px-3 rounded"

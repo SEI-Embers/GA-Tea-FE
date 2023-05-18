@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { signOut } from '../../services/users.js'
+// import { signOut } from '../../services/users.js'
 import { useNavigate } from 'react-router-dom'
 
 export default function SignOut({ setUser }) {
@@ -7,7 +7,7 @@ export default function SignOut({ setUser }) {
 
   useEffect(() => {
     const signOutUser = async () => {
-      await signOut()
+      // await signOut()
       setUser(null)
       navigate('/')
     }
