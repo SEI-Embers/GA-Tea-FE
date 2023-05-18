@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function Post() {
+export default function Post({ post }) {
   const [showAllComments, setShowAllComments] = useState(false);
   const [commentInput, setCommentInput] = useState("");
   const [comments, setComments] = useState([
@@ -57,6 +57,7 @@ export default function Post() {
   const handleToggleComments = () => {
     setShowAllComments(!showAllComments);
   };
+  console.log(post)
 
   return (
     <div className="flex flex-col justify-center items-center mt-8">
@@ -65,15 +66,15 @@ export default function Post() {
           <input
             type="text"
             className="text-lg font-bold w-full rounded-lg p-2 mb-4"
-            placeholder="Title"
+            placeholder={post.title}
           />
           <span className="text-sm text-gray-500 self-end">
-            {formatDate(Date.now())}
+            {/* {post.date} */}
           </span>
         </div>
         <textarea
           className="w-full rounded-lg p-2 mb-4"
-          placeholder="Type something here..."
+          placeholder={post.body}
         ></textarea>
         <input
           type="text"

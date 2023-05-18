@@ -25,7 +25,7 @@ export default function Signup() {
   return (
     <React.Fragment>
       <div
-        className="bg-transparent text-black text-center pb-80 font-mono cursor-pointer"
+        className="bg-transparent text-black text-center font-mono cursor-pointer"
         onClick={handleSignUpClick}
       >
         Sign Up
