@@ -1,8 +1,9 @@
+import userEvent from "@testing-library/user-event";
 import { useRef } from "react";
 // import { useNavigate } from "react-router-dom";
 import { createPosts } from "../../services/posts.js";
 
-export default function CreatePostModal({ setShowCreateModal, setTogglePosts }) {
+export default function CreatePostModal({ user, setShowCreateModal, setTogglePosts }) {
   // const ownerRef = useRef();
   const titleRef = useRef();
   const bodyRef = useRef();
@@ -15,7 +16,7 @@ export default function CreatePostModal({ setShowCreateModal, setTogglePosts }) 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      // owner: ownerRef.current.value,
+      owner: user.id,
       title: titleRef.current.value,
       body: bodyRef.current.value,
       pic: picRef.current.value,
@@ -61,7 +62,8 @@ export default function CreatePostModal({ setShowCreateModal, setTogglePosts }) 
             type="text"
             placeholder="Owner"
             ref={ownerRef}
-            className="p-3 text-sm border border-gray-300 rounded"
+            value={user.username}
+            className="p-3 text-sm border border-gray-300 rounded hidden"
           /> */}
           <input
             type="text"
