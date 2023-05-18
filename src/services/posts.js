@@ -1,4 +1,5 @@
 import api from "./apiConfig.js";
+import axios from "axios";
 
 export const getPosts = async () => {
   try {
