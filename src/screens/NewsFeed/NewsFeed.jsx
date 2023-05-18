@@ -38,5 +38,5 @@ export default function NewsFeed() {
       </div>
       <Footer />
     </div>
-  );
+  )
 }
