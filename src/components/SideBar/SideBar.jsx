@@ -1,8 +1,13 @@
 import { useState } from "react";
-// import { signOut } from "../../services/users";
+import {useNavigate} from "react-router-dom";
+import CreatePostModal from "../CreatePostModal.jsx/CreatePostModal.jsx"
+import { signOut } from "../../services/users.js"
 
-export default function SideBar() {
+export default function SideBar({user, setTogglePosts}) {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [showCreateModal, setShowCreateModal] = useState(false)
+
+  const navigate = useNavigate()
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,28 +25,37 @@ export default function SideBar() {
     // Handle sort by user functionality
   };
 
-  const createPost = () => {
-    //pop up modal to create a post
-  }
+
+  const handleSubmit = async () => {
+    setShowCreateModal(true)
+  };
+  
+  const handleSignOut = async () => {
+    await signOut()
+    navigate("/")
+  };
+
 
   return (
+    <>    
     <div className="flex pl-32 pb-20 items-center">
+          {showCreateModal && <CreatePostModal setShowCreateModal={setShowCreateModal} setTogglePosts={setTogglePosts}/>}    
       {/* Sidebar */}
       <div className="rounded-md bg-white shadow-lg p-6 w-72">
         <div>
           {/* Display user's image */}
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIdvnQarn7Vt8NK9nMJ2diraaX_yjMrC-gZA&usqp=CAU"
+            src={user?.pic}
             alt="User"
             className="w-24 h-24 rounded-full mb-6 m-auto"
           />
 
           <p className="text-gray-800 text-xl cursor-pointer mb-6 text-center">
-            My Profile
+            Welcome {user?.username}
           </p>
 
           {/* Create a post */}
-          <p className="text-gray-800 text-xl cursor-pointer mb-6 text-center" onClick={createPost}>
+          <p className="text-gray-800 text-xl cursor-pointer mb-6 text-center" onClick={handleSubmit}>
             Create a post
           </p>
 
@@ -67,6 +81,12 @@ export default function SideBar() {
               >
                 By User
               </button>
+              <button
+                className="border border-gray-300 rounded-lg p-1 mb-1 text-sm shadow"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </button>
             </div>
           </div>
 
@@ -79,5 +99,6 @@ export default function SideBar() {
         </div>
       </div>
     </div>
+    </>
   );
 }
