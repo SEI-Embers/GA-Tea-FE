@@ -1,30 +1,10 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import { getComments } from "../../services/comments.js";
-=======
 import React, { useState } from "react";
 import EditPostModal from "../EditPostModal/EditPostModal.jsx";
 import { deletePosts } from "../../services/posts";
->>>>>>> 807a9e711cd57e7b12dc52966dc47de312d2f184
 
 export default function Post({ post, user, setTogglePosts }) {
   const [showAllComments, setShowAllComments] = useState(false);
   const [commentInput, setCommentInput] = useState("");
-<<<<<<< HEAD
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const data = await getComments();
-        setComments(data);
-      } catch (error) {
-        console.log("error - failed to get comments");
-      }
-    };
-    fetchComments();
-  }, []);
-=======
   const [showEditModal, setShowEditModal] = useState(false)
   const [comments, setComments] = useState([
     {
@@ -59,7 +39,6 @@ export default function Post({ post, user, setTogglePosts }) {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(date).toLocaleDateString(undefined, options);
   };
->>>>>>> 807a9e711cd57e7b12dc52966dc47de312d2f184
 
   const handleCommentChange = (event) => {
     setCommentInput(event.target.value);
@@ -81,7 +60,7 @@ export default function Post({ post, user, setTogglePosts }) {
   const handleToggleComments = () => {
     setShowAllComments(!showAllComments);
   };
-  
+
   const handleDelete = async () => {
     await deletePosts(post.id);
     setTogglePosts((prev) => !prev);
@@ -121,7 +100,6 @@ export default function Post({ post, user, setTogglePosts }) {
           className="w-full rounded-lg p-2 mb-4"
           placeholder="Hashtags"
         />
->>>>>>> 807a9e711cd57e7b12dc52966dc47de312d2f184
         <form onSubmit={handleCommentSubmit}>
           <input
             type="text"

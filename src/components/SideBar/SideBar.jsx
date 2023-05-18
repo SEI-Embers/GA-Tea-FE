@@ -1,12 +1,7 @@
 import { useState } from "react";
-<<<<<<< HEAD
-import { Link } from 'react-router-dom'
-// import { signOut } from "../../services/users";
-=======
 import {useNavigate} from "react-router-dom";
 import CreatePostModal from "../CreatePostModal.jsx/CreatePostModal.jsx"
 import { signOut } from "../../services/users.js"
->>>>>>> 807a9e711cd57e7b12dc52966dc47de312d2f184
 
 export default function SideBar({user, setTogglePosts}) {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
