@@ -39,9 +39,9 @@ export default function SideBar({user, setTogglePosts}) {
   return (
     <>    
     <div className="flex pl-32 pb-20 items-center">
-          {showCreateModal && <CreatePostModal setShowCreateModal={setShowCreateModal} setTogglePosts={setTogglePosts}/>}    
+          {showCreateModal && <CreatePostModal user={user} setShowCreateModal={setShowCreateModal} setTogglePosts={setTogglePosts}/>}    
       {/* Sidebar */}
-      <div className="rounded-md bg-white shadow-lg p-6 w-72">
+      <div className="border border-orange-400 border-2 rounded-md bg-white shadow-lg p-6 w-72">
         <div>
           {/* Display user's image */}
           <img
@@ -51,7 +51,7 @@ export default function SideBar({user, setTogglePosts}) {
           />
 
           <p className="text-gray-800 text-xl cursor-pointer mb-6 text-center">
-            Welcome {user?.username}
+            Welcome, {user?.username}!
           </p>
 
           {/* Create a post */}

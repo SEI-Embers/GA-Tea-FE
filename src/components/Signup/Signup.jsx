@@ -57,7 +57,7 @@ export default function Signup ({setUser}) {
         </button>
       )
     } else {
-      return <button type='submit'>Sign Up</button>
+      return <button type='submit'></button>
     }
   };
 
