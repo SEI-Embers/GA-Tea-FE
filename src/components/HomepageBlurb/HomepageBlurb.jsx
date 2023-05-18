@@ -1,19 +1,19 @@
-import React from "react";
+// import { useState } from 'react';
 import Login from "../Login/Login.jsx";
 import Signup from "../Signup/Signup.jsx";
 
-export default function HomepageBlurb() {
+export default function HomepageBlurb({setUser}) {  
   return (
     <>
-      <div class="ml-96 pt-80">
-        <div class="flex justify-center items-center">
-          <svg class="transform rotate-0 h-64 w-96">
+      <div className="ml-96 pt-80">
+        <div className="flex justify-center items-center">
+          <svg className="transform rotate-0 h-64 w-96">
             <defs>
               <path id="line1" d="M 15,100 A 270,150 0 0 1 450,620" />
             </defs>
-            <text class="text-black text-center text-5xl font-serif font-bold">
+            <text className="text-black text-center text-5xl font-serif font-bold">
               <textPath
-                class="pl-24 flex justify-center shadow-md hover:shadow-lg"
+                className="pl-24 flex justify-center shadow-md hover:shadow-lg"
                 href="#line1"
                 style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)" }}
               >
@@ -22,9 +22,9 @@ export default function HomepageBlurb() {
             </text>
           </svg>
         </div>
-        <div class="fixed bottom-48 left-1/3 ml-24 text-center">
+        <div className="fixed bottom-48 left-1/3 ml-24 text-center">
           <p
-            class="font-serif text-lg leading-relaxed"
+            className="font-serif text-lg leading-relaxed"
             style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)" }}
           >
             General Assembly alumni <br /> have a <b>unique</b> bond and{" "}
@@ -38,18 +38,8 @@ export default function HomepageBlurb() {
         </div>
       </div>
       <div className="flex justify-center pl-96 pt-24">
-        <button
-          className="mr-12 px-4 py-2 text-black bg-orange-500 rounded-md shadow-md hover:shadow-lg border border-black"
-          style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)" }}
-        >
-          <Login />
-        </button>
-        <button
-          className="px-4 py-2 text-black bg-red-600 rounded-md shadow-md hover:shadow-lg border border-black"
-          style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)" }}
-        >
-          <Signup />
-        </button>
+          <Login setUser={setUser}/>
+          <Signup setUser={setUser}/>
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import HomepageBlurb from "../../components/HomepageBlurb/HomepageBlurb.jsx";
 
-export default function HomePage() {
+export default function HomePage({setUser}) {
   return (
     <div
       className="h-screen"
@@ -13,7 +13,7 @@ export default function HomePage() {
       }}
     >
       <div>
-        <HomepageBlurb />
+        <HomepageBlurb setUser={setUser} />
       </div>
     </div>
   );
