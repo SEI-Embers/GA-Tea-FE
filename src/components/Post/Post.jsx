@@ -60,7 +60,7 @@ export default function Post() {
 
   return (
     <div className="flex flex-col justify-center items-center mt-8">
-      <div className="bg-white border border-gray-300 rounded-lg shadow-lg p-6 max-w-lg w-full">
+      <div className="bg-white border border-blue-800 rounded-lg shadow-lg p-6 max-w-lg w-full">
         <div className="flex justify-between items-center mb-4">
           <input
             type="text"

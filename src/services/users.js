@@ -4,7 +4,7 @@
 // export const signUp = async (credentials) => {
 //   try {
 //     const resp = await api.post(
-//       // "https://digimon-api.herokuapp.com/sign-up",
+//       // "'https://digimon-api.herokuapp.com/sign-up'",
 //       credentials
 //     );
 //     localStorage.setItem("token", resp.data.token);
