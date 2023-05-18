@@ -69,37 +69,26 @@ export default function Post({ post, user, setTogglePosts }) {
   const handleEdit = () => {
     setShowEditModal(true)
   }
-
+console.log(user)
   return (
     <div className="flex flex-col justify-center items-center mt-8">
-      {showEditModal && <EditPostModal setShowEditModal={setShowEditModal} setTogglePosts={setTogglePosts} postId={post.id}/>}    
-      <div className="bg-white border border-gray-300 rounded-lg shadow-lg p-6 max-w-lg w-full">
+      {showEditModal && <EditPostModal setShowEditModal={setShowEditModal} setTogglePosts={setTogglePosts} postId={post.id} user={user}/>}    
+      <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full relative">
         <div className="flex justify-between items-center mb-4">
-          <input
-            type="text"
-            className="text-lg font-bold w-full rounded-lg p-2 mb-4"
-            placeholder={post.title}
-          />
+        <h2 className="text-lg text-gray-950 font-bold">{post.owner}</h2>
+          <h3 className="text-lg text-gray-950 font-bold mb-2">{post.title}</h3>
           <span className="text-sm text-gray-500 self-end">
-            {/* {post.date} */}
           </span>
-          {user?.id === post.owner ? (
+          {user?.username === post.owner ? (
             <div>
               <button onClick={handleEdit}>Edit</button>
               <button onClick={handleDelete}>Delete</button>
             </div>
           ) : null}
         </div>
-        <textarea
-          className="w-full rounded-lg p-2 mb-4"
-          placeholder={post.body}
-        ></textarea>
+        <p className="text-sm text-gray-950">{formatDate(post.created_at)}</p><br />
+        <p className="text-gray-800 mb-4">{post.body}</p>
         <img src={post.pic} alt={post.title} />
-        <input
-          type="text"
-          className="w-full rounded-lg p-2 mb-4"
-          placeholder="Hashtags"
-        />
         <form onSubmit={handleCommentSubmit}>
           <input
             type="text"

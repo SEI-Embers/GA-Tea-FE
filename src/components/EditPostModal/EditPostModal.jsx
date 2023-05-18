@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { createPosts, updatePost, getPost } from "../../services/posts.js";
 
-export default function EditPostModal({ setShowEditModal, setTogglePosts, postId }) {
+export default function EditPostModal({ setShowEditModal, setTogglePosts, postId, user }) {
   const titleRef = useRef();
   const bodyRef = useRef();
   const picRef = useRef();
@@ -10,6 +10,7 @@ export default function EditPostModal({ setShowEditModal, setTogglePosts, postId
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
+      owner: user.id,
       title: titleRef.current.value,
       body: bodyRef.current.value,
       pic: picRef.current.value,
