@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signOut } from "../../services/users";
+// import { signOut } from "../../services/users";
 
 export default function SideBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -70,12 +70,12 @@ export default function SideBar() {
             </div>
           </div>
 
-          <p
+          {/* <p
             className="text-gray-800 text-xl cursor-pointer mb-6 text-center"
             onClick={signOut}
           >
             Sign Out
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

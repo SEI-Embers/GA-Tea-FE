@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { signIn } from '../../services/users.js';
 
 export default function Login() {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleLoginClick = () => {
     setShowLoginForm(true);
@@ -13,12 +13,26 @@ export default function Login() {
     setShowLoginForm(false);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // console.log("Username:", username);
-    // console.log("Password:", password);
-    // add your login logic here
+  const navigate = useNavigate()
+
+  const [form, setForm] = useState({
+    username: '',
+    password: ''
+  })
+
+  const handleChange = (event) => 
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value,
+    })
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const user = await signIn(form)
+    navigate("/newsfeed")
   };
+
+  const { username, password } = form
 
   return (
     <React.Fragment>
@@ -41,16 +55,18 @@ export default function Login() {
             <input
               type="text"
               placeholder="Username"
+              name="username"
               className="border border-black rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={username}
-              onChange={(event) => setUsername(event.target.value)}
+              onChange={handleChange}
             />
             <input
               type="password"
               placeholder="Password"
+              name="password"
               className="border border-black rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={handleChange}
             />
             <button
               type="Submit"
