@@ -33,6 +33,10 @@ useEffect(() => {
 
   return (
     <div>
+      {/* do not push these changes, just comment this out for testing the development of the profile page */}
+
+     {/* <Profile></Profile>  */}
+
       <Routes>
         <Route path='/' element={<HomePage setUser={setUser}/>} />
         {/* <Route path='/sign-out' element={<SignOut setUser={setUser}/>}/> */}
