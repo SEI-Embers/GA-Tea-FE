@@ -5,7 +5,8 @@ import { deletePosts } from "../../services/posts";
 export default function Post({ post, user, setTogglePosts }) {
   const [showAllComments, setShowAllComments] = useState(false);
   const [commentInput, setCommentInput] = useState("");
-  const [showEditModal, setShowEditModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const [comments, setComments] = useState([
     {
       name: "John Doe",
@@ -19,21 +20,14 @@ export default function Post({ post, user, setTogglePosts }) {
       content:
         "Nam consequat elit vel dolor suscipit lobortis. Duis iaculis justo at elit egestas ullamcorper. Fusce malesuada sapien sit amet urna bibendum, quis interdum enim rutrum.",
     },
-    {
-      name: "Alice Johnson",
-      image: "https://randomuser.me/api/portraits/women/42.jpg",
-      content:
-        "Aliquam tincidunt imperdiet dignissim. Fusce sed vestibulum nisl. Donec sit amet mauris congue, imperdiet ex sit amet, commodo quam.",
-    },
-    {
-      name: "Mark Lee",
-      image: "https://randomuser.me/api/portraits/men/92.jpg",
-      content:
-        "Donec ac posuere velit. Praesent eget tincidunt lectus. Morbi maximus consectetur ex, non tristique nunc volutpat sit amet.",
-    },
   ]);
 
+
   const displayedComments = showAllComments ? comments : comments.slice(0, 1);
+
+  const handleEllipsisClick = () => {
+    setShowOptions((prevShowOptions) => !prevShowOptions);
+  };
 
   const formatDate = (date) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -67,39 +61,44 @@ export default function Post({ post, user, setTogglePosts }) {
   };
 
   const handleEdit = () => {
-    setShowEditModal(true)
-  }
+    setShowEditModal(true);
+  };
 
   return (
     <div className="flex flex-col justify-center items-center mt-8">
-      {showEditModal && <EditPostModal setShowEditModal={setShowEditModal} setTogglePosts={setTogglePosts} postId={post.id}/>}    
-      <div className="bg-white border border-gray-300 rounded-lg shadow-lg p-6 max-w-lg w-full">
-        <div className="flex justify-between items-center mb-4">
-          <input
-            type="text"
-            className="text-lg font-bold w-full rounded-lg p-2 mb-4"
-            placeholder={post.title}
-          />
-          <span className="text-sm text-gray-500 self-end">
-            {/* {post.date} */}
-          </span>
-          {user?.id === post.owner ? (
+      {showEditModal && (
+        <EditPostModal
+          setShowEditModal={setShowEditModal}
+          setTogglePosts={setTogglePosts}
+          postId={post.id}
+          user={user}
+        />
+      )}
+      <div className="bg-white border border-orange-500 border-2 rounded-lg shadow-lg p-6 max-w-lg w-full relative">
+        <div className="flex flex-col items-start mb-4">
+          <h2 className="text-sm text-gray-950 font-bold pb-2">{post.owner}</h2>
+          <h3 className="text-lgtext-gray-950 font-bold mb-2">{post.title}</h3>
+          {user?.username === post.owner ? (
             <div>
-              <button onClick={handleEdit}>Edit</button>
-              <button onClick={handleDelete}>Delete</button>
+              <button className="ellipsis-button absolute top-0 right-4 text-3xl" onClick={handleEllipsisClick}>
+                &#8230;</button>
+                {showOptions && (
+                    <div>
+                    <button className="absolute top-10 right-1 text-black-500 hover:text-blue-700 hover:font-bold hover:underline" 
+                  onClick={handleEdit}>
+                    Edit
+                  </button>
+                  <button className="absolute top-14 right-1 text-black-500 hover:text-red-700 hover:font-bold hover:underline" 
+                  onClick={handleDelete}>
+                    Delete
+                  </button>
+                    </div>
+                    )}
             </div>
           ) : null}
         </div>
-        <textarea
-          className="w-full rounded-lg p-2 mb-4"
-          placeholder={post.body}
-        ></textarea>
+        <p className="text-gray-800 mb-4">{post.body}</p>
         <img src={post.pic} alt={post.title} />
-        <input
-          type="text"
-          className="w-full rounded-lg p-2 mb-4"
-          placeholder="Hashtags"
-        />
         <form onSubmit={handleCommentSubmit}>
           <input
             type="text"
@@ -109,14 +108,20 @@ export default function Post({ post, user, setTogglePosts }) {
             onChange={handleCommentChange}
           />
         </form>
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-2">
           {displayedComments.map((comment, index) => (
-            <div key={index}>
-              <span className="font-bold text-sm">{comment.name}</span>
-              <p className="border border-gray-300 rounded-lg p-2 text-sm break-words">
-                {comment.owner}: &nbsp;
-                {comment.body}
-              </p>
+            <div key={index} className="flex items-start space-x-2">
+              <img
+                className="w-6 h-6 rounded-full"
+                src={comment.image}
+                alt="user avatar"
+              />
+              <div>
+                <span className="font-bold text-sm">{comment.name}</span>
+                <p className="border border-gray-300 rounded-lg p-1 text-sm break-words">
+                  {comment.content}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -128,7 +133,6 @@ export default function Post({ post, user, setTogglePosts }) {
             Load Comments
           </button>
         )}
-
         {showAllComments && (
           <button
             className="text-red-500 hover:underline text-sm mt-4"
@@ -137,15 +141,9 @@ export default function Post({ post, user, setTogglePosts }) {
             Close Comments
           </button>
         )}
-
-        <div className="absolute bottom-0 right-0 mb-2 mr-2">
-          <button
-            className="text-gray-500 hover:text-gray-700"
-            onClick={() => setShowOptions(!showOptions)}
-          >
-            ...
-          </button>
-        </div>
+        <p className="text-sm text-gray-950 absolute bottom-0 right-0 p-2">
+          {formatDate(post.created_at)}
+        </p>
       </div>
     </div>
   );
