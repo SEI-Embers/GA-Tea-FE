@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getPosts = async () => {
   try {
-    const response = await axios.get("ga-tea-be-production.up.railway.app/posts/");
+    const response = await api.get("/api/posts/");
     return response.data;
   } catch (error) {
     console.error(`Failed to get posts - error: ${error}`);

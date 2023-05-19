@@ -26,7 +26,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://ga-tea-be-production.up.railway.app/",
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? "https://ga-tea-be-production.up.railway.app/"
+      : "https://ga-tea-be-production.up.railway.app/",
 });
 
 api.interceptors.request.use(

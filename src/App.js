@@ -12,13 +12,12 @@ import Footer from './components/Footer/Footer.jsx'
 function App() {
   const [user, setUser] = useState(null);
 
-
   return (
     <div>
       <Routes>
         <Route path='/' element={<HomePage user={user} setUser={setUser}/>} />
         <Route path='/sign-out' element={<SignOut setUser={setUser}/>}/>
-        {/* <Route path='/newsfeed' element={<NewsFeed user={user} />} /> */}
+        <Route path='/newsfeed' element={<NewsFeed user={user} />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser}/>}/>
         <Route path='/meet-the-team' element={<MeetTheTeam user={user}/>}/>
         <Route path='/about' element={<About user={user}/>} />
