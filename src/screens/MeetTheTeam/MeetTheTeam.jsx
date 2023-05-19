@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const MeetTheTeam = () => {
   const [members, setMembers] = useState([
-    { name: 'Agustines Sudibya', image: 'https://ca.slack-edge.com/T0351JZQ0-U04P461QR9R-cf7bc80e3d8c-512', bio: '' },
+    { name: 'Agustines Sudibya', image: 'https://ca.slack-edge.com/T0351JZQ0-U04P461QR9R-cf7bc80e3d8c-512', bio: 'Agustines Sudibya is a dynamic entrepreneur, engineer, lifelong learner dedicated to making a positive impact through innovation and continuous personal and professional growth.' },
     { name: 'Chelsey Alphonso', image: 'https://ca.slack-edge.com/T0351JZQ0-U04PGU3AQE5-022247ee6693-512', bio: '' },
     { name: 'Justin Sotolongo', image: 'https://ca.slack-edge.com/T0351JZQ0-U04QZEC44N7-2f189048fd07-512', bio: 'Trying my best to be something in this world.Idk where im going, but ill definitely bring my Switch!' },
     { name: 'Michael Christenson', image: 'https://ca.slack-edge.com/T0351JZQ0-U04PF4FBZ8A-b6dfda53e589-512', bio: 'Originally built as a minor VS Code extension designed to remind fledgling programmers to drink water and ingest granola, Michael currently demonstrates a growth in artificial intelligence extolled by the likes of cybernetic overlord Christopher Duggan as "geometric" and "Turing Test-ready."' },
