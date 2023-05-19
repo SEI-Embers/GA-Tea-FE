@@ -97,6 +97,7 @@ export default function Post({ post, user, setTogglePosts }) {
             </div>
           ) : null}
         </div>
+        <p className="text-sm text-gray-950">{formatDate(post.created_at)}</p><br />
         <p className="text-gray-800 mb-4">{post.body}</p>
         <img src={post.pic} alt={post.title} />
         <form onSubmit={handleCommentSubmit}>

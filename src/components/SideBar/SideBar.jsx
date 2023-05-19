@@ -28,7 +28,7 @@ export default function SideBar({user, setTogglePosts}) {
   return (
     <>
     <div className="flex pl-32 pb-20 items-center">
-          {showCreateModal && <CreatePostModal user={user} setShowCreateModal={setShowCreateModal} setTogglePosts={setTogglePosts}/>}
+          {showCreateModal && <CreatePostModal user={user} setShowCreateModal={setShowCreateModal} setTogglePosts={setTogglePosts}/>}    
       {/* Sidebar */}
       <div className="border border-orange-400 border-2 rounded-md bg-white shadow-lg p-6 w-72">
         <div>

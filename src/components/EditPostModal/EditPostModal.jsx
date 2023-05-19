@@ -1,7 +1,8 @@
 import { useRef, useEffect } from "react";
 import { createPosts, updatePost, getPost } from "../../services/posts.js";
 
-export default function EditPostModal({ setShowEditModal, setTogglePosts, postId,user }) {
+export default function EditPostModal({ setShowEditModal, setTogglePosts, postId, user }) {
+
   const titleRef = useRef();
   const bodyRef = useRef();
   const picRef = useRef();
