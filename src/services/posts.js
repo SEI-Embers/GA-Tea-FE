@@ -1,5 +1,6 @@
 import api from "./apiConfig.js";
 
+
 export const getPosts = async () => {
   try {
     const response = await api.get("/api/posts/");

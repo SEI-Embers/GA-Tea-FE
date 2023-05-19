@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
+// import { verifyUser } from './services/users.js';
 import HomePage from './screens/HomePage/HomePage.jsx'
 // import SignOut from './screens/SignOut/SignOut.jsx'
 import NewsFeed from './screens/NewsFeed/NewsFeed.jsx'

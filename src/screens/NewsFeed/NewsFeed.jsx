@@ -21,12 +21,12 @@ export default function NewsFeed({user}) {
   }, [togglePosts]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex bg-gradient-to-t from-red-500 to-orange-600 flex-col min-h-screen">
       <div className="flex-1 flex">
         <SideBar user={user} setTogglePosts={setTogglePosts}/>
         <div
           className="flex-1 overflow-y-auto"
-          style={{ maxHeight: "calc(100vh - 5rem)" }}
+          style={{ maxHeight: "calc(100vh - 3rem)" }}
         >
           <div>
           {posts.map((post) => (

@@ -3,7 +3,7 @@ import api from "./apiConfig.js";
 
 export const getComments = async () => {
   try {
-    const response = await axios.get("ga-tea-be-production.up.railway.app/comments/");
+    const response = await axios.get("https://ga-tea-be-production.up.railway.app/api/comments/");
     return response.data;
   } catch (error) {
     console.error(`Failed to get posts - error: ${error}`);

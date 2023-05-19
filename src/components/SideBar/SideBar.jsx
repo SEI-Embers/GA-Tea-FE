@@ -1,43 +1,32 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import CreatePostModal from "../CreatePostModal.jsx/CreatePostModal.jsx"
 import { signOut } from "../../services/users.js"
-
 export default function SideBar({user, setTogglePosts}) {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false)
-
   const navigate = useNavigate()
-
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   const handleSortByDate = () => {
     // Handle sort by date functionality
   };
-
   const handleSortByTags = () => {
     // Handle sort by tags functionality
   };
-
   const handleSortByUser = () => {
     // Handle sort by user functionality
   };
-
-
   const handleSubmit = async () => {
     setShowCreateModal(true)
   };
-  
   const handleSignOut = async () => {
     await signOut()
     navigate("/")
   };
-
-
   return (
-    <>    
+    <>
     <div className="flex pl-32 pb-20 items-center">
           {showCreateModal && <CreatePostModal user={user} setShowCreateModal={setShowCreateModal} setTogglePosts={setTogglePosts}/>}    
       {/* Sidebar */}
@@ -49,16 +38,13 @@ export default function SideBar({user, setTogglePosts}) {
             alt="User"
             className="w-24 h-24 rounded-full mb-6 m-auto"
           />
-
-          <p className="text-gray-800 text-xl cursor-pointer mb-6 text-center">
-            Welcome, {user?.username}!
+          <p className="text-gray-800 text-xl cursor-pointer mb-6 text-center hover:underline">
+            <Link to='/profile'>Welcome, {user?.username}!</Link>
           </p>
-
           {/* Create a post */}
-          <p className="text-gray-800 text-xl cursor-pointer mb-6 text-center" onClick={handleSubmit}>
+          <p className="text-gray-800 text-xl cursor-pointer mb-6 text-center hover:underline" onClick={handleSubmit}>
             Create a post
           </p>
-
           {/* Filter a post */}
           <div className="text-gray-800 text-xl mb-6 text-center">
             <p>Filter a post:</p>
@@ -80,16 +66,15 @@ export default function SideBar({user, setTogglePosts}) {
                 onClick={handleSortByUser}
               >
                 By User
-              </button>
-              <button
-                className="border border-gray-300 rounded-lg p-1 mb-1 text-sm shadow"
+              </button><br />
+              <p
+                className="text-gray-700 text-xl cursor-pointer mb-6 text-center hover:underline"
                 onClick={handleSignOut}
               >
                 Sign Out
-              </button>
+              </p>
             </div>
           </div>
-
           {/* <p
             className="text-gray-800 text-xl cursor-pointer mb-6 text-center"
             onClick={signOut}
@@ -102,3 +87,4 @@ export default function SideBar({user, setTogglePosts}) {
     </>
   );
 }
+

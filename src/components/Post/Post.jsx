@@ -5,7 +5,8 @@ import { deletePosts } from "../../services/posts";
 export default function Post({ post, user, setTogglePosts }) {
   const [showAllComments, setShowAllComments] = useState(false);
   const [commentInput, setCommentInput] = useState("");
-  const [showEditModal, setShowEditModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const [comments, setComments] = useState([
     {
       name: "John Doe",
@@ -19,21 +20,14 @@ export default function Post({ post, user, setTogglePosts }) {
       content:
         "Nam consequat elit vel dolor suscipit lobortis. Duis iaculis justo at elit egestas ullamcorper. Fusce malesuada sapien sit amet urna bibendum, quis interdum enim rutrum.",
     },
-    {
-      name: "Alice Johnson",
-      image: "https://randomuser.me/api/portraits/women/42.jpg",
-      content:
-        "Aliquam tincidunt imperdiet dignissim. Fusce sed vestibulum nisl. Donec sit amet mauris congue, imperdiet ex sit amet, commodo quam.",
-    },
-    {
-      name: "Mark Lee",
-      image: "https://randomuser.me/api/portraits/men/92.jpg",
-      content:
-        "Donec ac posuere velit. Praesent eget tincidunt lectus. Morbi maximus consectetur ex, non tristique nunc volutpat sit amet.",
-    },
   ]);
 
+
   const displayedComments = showAllComments ? comments : comments.slice(0, 1);
+
+  const handleEllipsisClick = () => {
+    setShowOptions((prevShowOptions) => !prevShowOptions);
+  };
 
   const formatDate = (date) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -67,22 +61,39 @@ export default function Post({ post, user, setTogglePosts }) {
   };
 
   const handleEdit = () => {
-    setShowEditModal(true)
-  }
-console.log(user)
+    setShowEditModal(true);
+  };
+
   return (
     <div className="flex flex-col justify-center items-center mt-8">
-      {showEditModal && <EditPostModal setShowEditModal={setShowEditModal} setTogglePosts={setTogglePosts} postId={post.id} user={user}/>}    
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full relative">
-        <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg text-gray-950 font-bold">{post.owner}</h2>
-          <h3 className="text-lg text-gray-950 font-bold mb-2">{post.title}</h3>
-          <span className="text-sm text-gray-500 self-end">
-          </span>
+      {showEditModal && (
+        <EditPostModal
+          setShowEditModal={setShowEditModal}
+          setTogglePosts={setTogglePosts}
+          postId={post.id}
+          user={user}
+        />
+      )}
+      <div className="bg-white border border-orange-500 border-2 rounded-lg shadow-lg p-6 max-w-lg w-full relative">
+        <div className="flex flex-col items-start mb-4">
+          <h2 className="text-sm text-gray-950 font-bold pb-2">{post.owner}</h2>
+          <h3 className="text-lgtext-gray-950 font-bold mb-2">{post.title}</h3>
           {user?.username === post.owner ? (
             <div>
-              <button onClick={handleEdit}>Edit</button>
-              <button onClick={handleDelete}>Delete</button>
+              <button className="ellipsis-button absolute top-0 right-4 text-3xl" onClick={handleEllipsisClick}>
+                &#8230;</button>
+                {showOptions && (
+                    <div>
+                    <button className="absolute top-10 right-1 text-black-500 hover:text-blue-700 hover:font-bold hover:underline" 
+                  onClick={handleEdit}>
+                    Edit
+                  </button>
+                  <button className="absolute top-14 right-1 text-black-500 hover:text-red-700 hover:font-bold hover:underline" 
+                  onClick={handleDelete}>
+                    Delete
+                  </button>
+                    </div>
+                    )}
             </div>
           ) : null}
         </div>
@@ -131,6 +142,9 @@ console.log(user)
             Close Comments
           </button>
         )}
+        <p className="text-sm text-gray-950 absolute bottom-0 right-0 p-2">
+          {formatDate(post.created_at)}
+        </p>
       </div>
     </div>
   );

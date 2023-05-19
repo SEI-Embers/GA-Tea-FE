@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { createPosts } from "../../services/posts.js";
 
 export default function CreatePostModal({ user, setShowCreateModal, setTogglePosts }) {
+
   // const ownerRef = useRef();
   const titleRef = useRef();
   const bodyRef = useRef();
@@ -37,9 +38,9 @@ export default function CreatePostModal({ user, setShowCreateModal, setTogglePos
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
     <div className="absolute inset-0 bg-black opacity-50"></div>
-    <div className="relative bg-white rounded-lg shadow-lg p-6 max-w-xl mx-auto">
+    <div className="relative border border-orange-500 border-2 drop-shadow-md bg-white rounded-lg shadow-lg p-6 w-96 mx-auto">
         <button
-          className="absolute top-2 right-2 text-black-500 hover:text-gray-700"
+          className="absolute top-0 right-0 text-black-500 hover:text-gray-700"
           onClick={handleClose}
         >
           <svg
@@ -104,7 +105,7 @@ export default function CreatePostModal({ user, setShowCreateModal, setTogglePos
           <input
             type="submit"
             value="Submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+            className="bg-black text-white px-4 py-2 rounded cursor-pointer hover:bg-red-500 transition duration-500 ease-in-out hover:font-bold text-white py-2 px-3 rounded"
           />
         </form>
       </div>
